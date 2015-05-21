@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>Luthiers</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<asset:stylesheet src="custom.css"/>
   		<asset:stylesheet src="bootstrap.css"/>
   		<asset:stylesheet src="theme.css"/>
 		<asset:javascript src="jquery-1.11.3.min.js"/>
@@ -27,7 +28,7 @@
 				<div id="navbar" class="navbar-collapse collapse pull-right">
           			<ul class="nav navbar-nav">
 			            <li><g:link controller="project">Proyectos</g:link></li>
-			            <li><g:link controller="client" action="create">Clientes</g:link></li>
+			            <li><g:link controller="client">Clientes</g:link></li>
 		        	</ul>
 				</div>
 			</div>

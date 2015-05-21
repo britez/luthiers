@@ -5,6 +5,8 @@ import ar.com.luthiers.exception.PersistanceException
 class ClientController {
 	
 	def clientService
+	
+	def index(){ [clients:clientService.list()] }
 
     def create() {}
 	
@@ -18,4 +20,6 @@ class ClientController {
 		}
 		redirect (action: "create")
 	}
+	
+	def view(Long id){ [client: clientService.get(id)] }
 }

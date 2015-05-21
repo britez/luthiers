@@ -7,9 +7,7 @@ import ar.com.luthiers.exception.PersistanceException
 @Transactional
 class ClientService {
 
-    def list() {
-		Client.executeQuery("from Client")
-    }
+    def list() { Client.executeQuery("from Client") }
 	
 	def create(Client client){
 		client.save()

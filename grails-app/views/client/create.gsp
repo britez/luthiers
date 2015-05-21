@@ -32,10 +32,6 @@
 				    	<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Apellido del cliente ...">
 				  	</div>
 				  	<div class="form-group">
-				    	<label for="item">Instrumento</label>
-				    	<input type="text" class="form-control" id="item" name="item" placeholder="Instrumento o artículo del cliente ...">
-				  	</div>
-				  	<div class="form-group">
 				    	<label for="contact">Contacto</label>
 				    	<input type="text" class="form-control" id="contact" name="contact" placeholder="Contacto del cliente ...">
 				  	</div>
