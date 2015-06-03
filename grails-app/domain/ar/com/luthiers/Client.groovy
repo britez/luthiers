@@ -8,4 +8,6 @@ class Client {
 
     static constraints = {}
 	static hasMany = [projects:Project]
+	static mapping = { projects lazy: false }
+	
 }

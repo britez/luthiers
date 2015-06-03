@@ -14,6 +14,10 @@ class ProjectController {
 		[projects:projectService.list()]
 	}
 	
+	def view(Long id){
+		[project:projectService.get(id)]
+	}
+	
 	def create(){
 		[clients:clientService.list()]
 	}
@@ -21,7 +25,6 @@ class ProjectController {
 	def save(){
 		try {
 			Project project = new Project()
-//			project.item = params.item
 			project.description = params.description
 			project.estimatedDate = new SimpleDateFormat("dd/MM/yyyy").parse(params.estimatedDate)
 			project.refactors = createRefactors(params.refactors, params.amount, project)

@@ -15,9 +15,11 @@
 			</div>
 		</div>
 		<div class="row">
-		  	<div class="form-group">
-		    	<label for="contact">Contacto: ${client.contact}</label>
-		  	</div>
+    		<p><b>Contacto:</b> ${client.contact}</p>
+		</div>
+		<div class="row">
+			<p><b>Proyectos:</b></p>
+			<g:render template="/project/list" model="${[projects:client.projects]}"/>
 		</div>
 	</body>
 </html>
