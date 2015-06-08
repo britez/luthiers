@@ -9,16 +9,6 @@
 	        	<h1>Crear Cliente</h1>
 			</div>
 		</div>
-		<g:if test="${flash.success}">
-		<div class="row alert alert-success" role="alert">
-      		<strong>Creado!</strong> Cliente creado con éxito.
-    	</div>
-		</g:if>
-		<g:if test="${flash.error}">
-		<div class="row alert alert-danger" role="alert">
-      		<strong>Ups!</strong> El cliente no pudo ser creado.
-    	</div>
-		</g:if>
 		<div class="row">
 			<div class="col-md-2"></div>
   			<div class="col-md-8">

@@ -22,20 +22,44 @@ class ProjectController {
 		[clients:clientService.list()]
 	}
 	
+	def edit(Long id){
+		def project = projectService.get(id)
+		[project:project,clients:clientService.list(),size:project.refactors?.size()]
+	}
+	
 	def save(){
+		Long result
 		try {
-			Project project = new Project()
-			project.description = params.description
-			project.estimatedDate = new SimpleDateFormat("dd/MM/yyyy").parse(params.estimatedDate)
-			project.refactors = createRefactors(params.refactors, params.amount, project)
-			projectService.create(project, clientService.get(params.client.toLong()))
+			result = projectService.create(createProject(params), clientService.get(params.client.toLong()))
 			flash.success = "Proyecto creado con éxito"
 		}catch(ResourceNotFoundException ex){
 			flash.error = "El cliente no existe"
 		}catch(PersistanceException ex){
 			flash.error = "El proyecto no pudo ser creado"
 		}
-		redirect (action: "create")
+		redirect (action: "view", id: result)
+	}
+	
+	def update(){
+		try {
+			def project = createProject(params)
+			project.owner = clientService.get(params.client.toLong())
+			projectService.update(params.id?.toLong(), project)
+			flash.success = "Proyecto actualizado correctamente!"
+		} catch (ResourceNotFoundException ex){
+			flash.error = "Error, el proyecto no existe"
+		} catch (PersistanceException ex){
+			flash.error = "Error actualizando el proyecto"
+		}
+		redirect (action: "view", id: params.id)
+	}
+	
+	private def createProject(def params){
+		Project project = new Project()
+		project.description = params.description
+		project.estimatedDate = new SimpleDateFormat("dd/MM/yyyy").parse(params.estimatedDate)
+		project.refactors = createRefactors(params.refactors, params.amount, project)
+		project
 	}
 	
 	private def createRefactors(String[] refactors, String[] amounts, Project project){

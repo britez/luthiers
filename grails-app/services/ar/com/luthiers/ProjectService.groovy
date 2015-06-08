@@ -1,5 +1,7 @@
 package ar.com.luthiers
 
+import javax.persistence.StoredProcedureParameter;
+
 import grails.transaction.Transactional
 import ar.com.luthiers.exception.PersistanceException
 import ar.com.luthiers.exception.ResourceNotFoundException
@@ -26,7 +28,22 @@ class ProjectService {
 		if(project.hasErrors()){
 			throw new PersistanceException()
 		}
-		project
+		project.id
+	}
+	
+	def update(Long id, Project project){
+		Project stored = get(id)
+		stored.description = project.description
+		stored.estimatedDate = project.estimatedDate
+		if(!stored.owner.equals(project.owner)){
+			stored.owner = project.owner
+		}
+		
+		stored.save()
+		if(stored.hasErrors()){
+			throw new PersistanceException()
+		}
+		id
 	}
 	
 	private Double getAmmount(def refactors){

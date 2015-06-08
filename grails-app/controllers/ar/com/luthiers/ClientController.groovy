@@ -11,15 +11,29 @@ class ClientController {
     def create() {}
 	
 	def save(){
+		Long result
 		try {
-			clientService.create(new Client(params))
+			result = clientService.create(new Client(params))
 			flash.success = "Cliente creado correctamente!"
-			
 		} catch (PersistanceException ex){
 			flash.error = "Error creando el cliente"
 		}
-		redirect (action: "create")
+		redirect (action: "view", id: result)
+	}
+	
+	def update(){
+		try {
+			clientService.update(params.id?.toLong(), new Client(params))
+			flash.success = "Cliente actualizado correctamente!"
+		} catch (PersistanceException ex){
+			flash.error = "Error, el cliente no existe"
+		} catch (PersistanceException ex){
+			flash.error = "Error actualizando el cliente"
+		}
+		redirect (action: "view", id: params.id)
 	}
 	
 	def view(Long id){ [client: clientService.get(id)] }
+	
+	def edit(Long id){ [client: clientService.get(id)] }
 }

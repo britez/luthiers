@@ -19,6 +19,18 @@ class ClientService {
 		return client.id
 	}
 	
+	def update(Long id, Client client){
+		def stored = get(id)
+		stored.name = client.name
+		stored.lastName = client.lastName
+		stored.contact = client.contact
+		stored.save()
+		if (stored.hasErrors()){
+			throw new PersistanceException()
+		}
+		id
+	}
+	
 	def get(Long id){
 		Client result = Client.executeQuery("from Client c where c.id = ?",id)[0]
 		if(!result){
