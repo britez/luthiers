@@ -4,6 +4,18 @@
 		<meta name="layout" content="main">
 	</head>
 	<body>
+		<div class="row">
+			<g:if test="${flash.success}">
+				<div class="row alert alert-success" role="alert">
+    				<strong>Creado!</strong> ${flash.success}.
+    			</div>
+			</g:if>
+			<g:if test="${flash.error}">
+				<div class="row alert alert-danger" role="alert">
+		      		<strong>Ups!</strong> ${flash.error}.
+		    	</div>
+			</g:if>
+		</div>
 		<g:if test="${nearToExpire > 0}">
 		<div class="row clearfix">
 			<div class="alert alert-warning" role="alert">

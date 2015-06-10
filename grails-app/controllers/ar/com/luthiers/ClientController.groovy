@@ -1,6 +1,7 @@
 package ar.com.luthiers
 
 import ar.com.luthiers.exception.PersistanceException
+import ar.com.luthiers.exception.ResourceNotFoundException
 
 class ClientController {
 	
@@ -36,4 +37,16 @@ class ClientController {
 	def view(Long id){ [client: clientService.get(id)] }
 	
 	def edit(Long id){ [client: clientService.get(id)] }
+	
+	def delete(Long id){
+		try {
+			clientService.delete(id)
+			flash.success = "Cliente eliminado correctamente"
+		} catch(ResourceNotFoundException ex){
+			flash.error = "El cliente no existe"
+		} catch(PersistanceException ex){
+			flash.error = "Error elinando el cliente"
+		}
+		redirect (action: "index")
+	}
 }

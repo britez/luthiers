@@ -7,7 +7,7 @@
 		<div class="row">
 			<g:if test="${flash.success}">
 				<div class="row alert alert-success" role="alert">
-    				<strong>Creado!</strong> ${flash.success}.
+    				<strong>Eliminado!</strong> ${flash.success}.
     			</div>
 			</g:if>
 			<g:if test="${flash.error}">
@@ -23,11 +23,9 @@
 						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar
 					</button>
 				</g:link>
-				<g:link>
-					<button type="button" class="btn btn-danger">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar
-					</button>
-				</g:link>
+				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar
+				</button>
 			</div>
 			<div class="page-header">
 	        	<h1>Proyecto</h1>
@@ -48,6 +46,37 @@
    		<div class="row">
     		<p><b>Detalle de arreglos:</b></p>
     		<g:render template="listRefactor" model="${[refactors: project.refactors]}"/>
+		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+   						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+   						<h3 class="modal-title" id="myModalLabel">Eliminar proyecto</h3>
+					</div>
+					<div class="modal-body">
+						<h4>¿Esta seguro de eliminar el proyecto?</h4>
+						<div class="alert alert-warning" role="alert">
+							<p>
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+								<b>Cuidado!</b> 
+								Esta operación no podrá ser deshecha.
+							</p>
+						</div>
+			      	</div>
+					<div class="modal-footer">
+   						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+   						<g:link action="delete" id="${project.id}">
+	   						<button type="button" class="btn btn-danger">
+	   							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+	   							Eliminar
+	   						</button>
+   						</g:link>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

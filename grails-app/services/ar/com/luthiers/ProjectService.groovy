@@ -1,7 +1,5 @@
 package ar.com.luthiers
 
-import javax.persistence.StoredProcedureParameter;
-
 import grails.transaction.Transactional
 import ar.com.luthiers.exception.PersistanceException
 import ar.com.luthiers.exception.ResourceNotFoundException
@@ -18,7 +16,7 @@ class ProjectService {
 	def get(Long id){
 		Project result = Project.executeQuery("from Project as p where p.id = ?",id)[0]
 		if(!result){
-			throw ResourceNotFoundException()
+			throw new ResourceNotFoundException()
 		}
 		result
 	}
@@ -47,12 +45,17 @@ class ProjectService {
 		id
 	}
 	
+	def delete(Long id){
+		Project project = get(id)
+		project.delete()
+	}
+	
 	def countNearToExpire(){
 		Project.executeQuery("select count(p.id) from Project p where p.estimatedDate <= ? and p.estimatedDate >= ?",[(new Date()+5).clearTime(), new Date().clearTime()])[0]
 	}
 	
 	def nearToExpire(){
-		Project.executeQuery("from Project p where p.estimatedDate <= ? and p.estimatedDate >= ?",[(new Date()+5).clearTime(), new Date().clearTime()])[0]
+		Project.executeQuery("from Project p where p.estimatedDate <= ? and p.estimatedDate >= ?",[(new Date()+5).clearTime(), new Date().clearTime()])
 	}
 	
 	def countExpired(){

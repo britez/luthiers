@@ -64,6 +64,18 @@ class ProjectController {
 		redirect (action: "view", id: params.id)
 	}
 	
+	def delete(Long id){
+		try {
+			projectService.delete(id)
+			flash.success = "Proyecto eliminado correctamente"
+		} catch(ResourceNotFoundException ex){
+			flash.error = "El proyecto no existe"
+		} catch(PersistanceException ex){
+			flash.error = "Error elinando el proyecto"
+		}
+		redirect (action: "index")
+	}
+	
 	private def createProject(def params){
 		Project project = new Project()
 		project.description = params.description

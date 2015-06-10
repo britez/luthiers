@@ -35,8 +35,12 @@ class ClientService {
 	def get(Long id){
 		Client result = Client.executeQuery("from Client c where c.id = ?",id)[0]
 		if(!result){
-			throw ResourceNotFoundException()
+			throw new ResourceNotFoundException()
 		}
 		result
+	}
+	
+	def delete(Long id){
+		get(id).delete()
 	}
 }
