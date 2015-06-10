@@ -6,7 +6,10 @@
 	<body>
 		<div class="row clearfix">
 			<g:link action="create">
-				<button type="button" class="btn btn-primary pull-right">Nuevo cliente</button>
+				<button type="button" class="btn btn-primary pull-right">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					Nuevo cliente
+				</button>
 			</g:link>
 			<div class="page-header">
 	        	<h1>Clientes</h1>

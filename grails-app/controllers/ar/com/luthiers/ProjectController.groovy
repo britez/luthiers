@@ -11,7 +11,17 @@ class ProjectController {
 	def clientService
 
     def index() {
-		[projects:projectService.list()]
+		[projects:projectService.list(), 
+		 nearToExpire:projectService.countNearToExpire(),
+		 expired: projectService.countExpired()]
+	}
+	
+	def expired(){
+		[projects:projectService.expired()]
+	}
+	
+	def near(){
+		[projects:projectService.nearToExpire()]
 	}
 	
 	def view(Long id){

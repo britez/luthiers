@@ -47,6 +47,22 @@ class ProjectService {
 		id
 	}
 	
+	def countNearToExpire(){
+		Project.executeQuery("select count(p.id) from Project p where p.estimatedDate <= ? and p.estimatedDate >= ?",[(new Date()+5).clearTime(), new Date().clearTime()])[0]
+	}
+	
+	def nearToExpire(){
+		Project.executeQuery("from Project p where p.estimatedDate <= ? and p.estimatedDate >= ?",[(new Date()+5).clearTime(), new Date().clearTime()])[0]
+	}
+	
+	def countExpired(){
+		Project.executeQuery("select count(p.id) from Project p where p.estimatedDate <= ?",[(new Date()-1).clearTime()])[0]
+	}
+	
+	def expired(){
+		Project.executeQuery("from Project p where p.estimatedDate <= ?",[new Date().clearTime()])
+	}
+	
 	private changeOwner(Project stored, Client newClient){
 		if(!stored.owner.equals(newClient)){
 			stored.owner = newClient
