@@ -30,6 +30,9 @@
     		<p><b>Contacto:</b> ${client.contact}</p>
 		</div>
 		<div class="row">
+    		<p><b>E-mail:</b> ${client.email}</p>
+		</div>
+		<div class="row">
 			<p><b>Proyectos:</b></p>
 			<g:render template="/project/list" model="${[projects:client.projects]}"/>
 		</div>

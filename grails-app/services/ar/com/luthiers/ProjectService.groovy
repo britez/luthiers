@@ -9,6 +9,8 @@ import ar.com.luthiers.exception.ResourceNotFoundException
 @Transactional
 class ProjectService {
 	
+	def refactorService
+	
     def list() {
 		Project.executeQuery("from Project")
     }
@@ -35,15 +37,20 @@ class ProjectService {
 		Project stored = get(id)
 		stored.description = project.description
 		stored.estimatedDate = project.estimatedDate
-		if(!stored.owner.equals(project.owner)){
-			stored.owner = project.owner
-		}
-		
+		changeOwner(stored, project.owner)
+		refactorService.update(stored, project.refactors)
+		stored.ammount = getAmmount(project.refactors)
 		stored.save()
 		if(stored.hasErrors()){
 			throw new PersistanceException()
 		}
 		id
+	}
+	
+	private changeOwner(Project stored, Client newClient){
+		if(!stored.owner.equals(newClient)){
+			stored.owner = newClient
+		}
 	}
 	
 	private Double getAmmount(def refactors){

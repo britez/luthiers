@@ -5,6 +5,7 @@ class Client {
 	String name
 	String lastName
 	String contact
+	String email
 
     static constraints = {}
 	static hasMany = [projects:Project]

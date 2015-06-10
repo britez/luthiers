@@ -58,7 +58,7 @@ class ProjectController {
 		Project project = new Project()
 		project.description = params.description
 		project.estimatedDate = new SimpleDateFormat("dd/MM/yyyy").parse(params.estimatedDate)
-		project.refactors = createRefactors(params.refactors, params.amount, project)
+		project.refactors = createRefactors(params.refactors, params.amounts, project)
 		project
 	}
 	
@@ -75,7 +75,6 @@ class ProjectController {
 		Refactor item = new Refactor()
 		item.price = amount.toDouble()
 		item.description = refactor
-		item.owner = project
 		result << item
 		result
 	}

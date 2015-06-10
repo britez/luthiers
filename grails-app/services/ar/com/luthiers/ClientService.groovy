@@ -24,6 +24,7 @@ class ClientService {
 		stored.name = client.name
 		stored.lastName = client.lastName
 		stored.contact = client.contact
+		stored.email = client.email
 		stored.save()
 		if (stored.hasErrors()){
 			throw new PersistanceException()

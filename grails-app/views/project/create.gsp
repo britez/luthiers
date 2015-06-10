@@ -34,7 +34,7 @@
 		<div class="row">
 			<div class="col-md-2"></div>
   			<div class="col-md-8">
-				<g:form action="save">
+				<g:form action="save" autocomplete="off">
 					<div id="form-content">
 					  	<div class="form-group">
 					    	<label for="client">Cliente</label>
@@ -72,7 +72,7 @@
 								<div class="col-md-3">
 					    			<div class="input-group">
 					          			<div class="input-group-addon">$</div>
-					          			<input type="text" class="form-control" id="amount" name="amount" placeholder="Precio">
+					          			<input type="text" class="form-control" id="amount" name="amounts" placeholder="Precio">
 					        		</div>
 					  			</div>
 					  			<div class="col-md-2">
@@ -90,7 +90,7 @@
 	    				  			"</div>"+
 	    				  			"<div class=\"col-md-5\">"+
 	    				  			"<div class=\"input-group\">"+
-	    				  			"<div class=\"input-group-addon\">$</div><input type=\"text\" class=\"form-control\" id=\"amount\" name=\"amount\" placeholder=\"Precio\">" +
+	    				  			"<div class=\"input-group-addon\">$</div><input type=\"text\" class=\"form-control\" id=\"amounts\" name=\"amounts\" placeholder=\"Precio\">" +
 	    				        	"</div></div></div></div>"
 									$('#form-content').append(html)
 	                   				});

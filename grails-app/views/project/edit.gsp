@@ -51,14 +51,14 @@
 		  				<g:each in="${project.refactors}" var="it" status="i">
 					  	<div class="form-group">
 			  				<div class="row">
-			  					<input type="hidden" value="${it.id}" name="refactorID">
+			  					<input type="hidden" value="${it.id}" name="refactorIds">
 	               				<div class="col-md-7">
 	               					<input type="text" class="form-control" id="refactors" name="refactors" placeholder="Descripción del arreglo ..." value="${it.description}">
     				  			</div>
 	    				  		<div class="col-md-${i==(size-1)?3:5}">
 	    				  			<div class="input-group">
 	    				  				<div class="input-group-addon">$</div>
-	    				  				<input type="text" class="form-control" id="amount" name="amount" placeholder="Precio" value="${it.price}">
+	    				  				<input type="text" class="form-control" id="amount" name="amounts" placeholder="Precio" value="${it.price}">
 	    				        	</div>
 	    				        </div>
 		    				    <g:if test="${(size-1)==i}">
@@ -79,7 +79,7 @@
 	    				  			"</div>"+
 	    				  			"<div class=\"col-md-5\">"+
 	    				  			"<div class=\"input-group\">"+
-	    				  			"<div class=\"input-group-addon\">$</div><input type=\"text\" class=\"form-control\" id=\"amount\" name=\"amount\" placeholder=\"Precio\">" +
+	    				  			"<div class=\"input-group-addon\">$</div><input type=\"text\" class=\"form-control\" id=\"amount\" name=\"amounts\" placeholder=\"Precio\">" +
 	    				        	"</div></div></div></div>"
 									$('#form-content').append(html)
 	                   				});

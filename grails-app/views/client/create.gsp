@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="col-md-2"></div>
   			<div class="col-md-8">
-				<g:form action="save">
+				<g:form action="save" autocomplete="off">
 				  	<div class="form-group">
 				    	<label for="name">Nombre</label>
 				    	<input type="text" class="form-control" id="name" name="name" placeholder="Nombre del cliente ...">
@@ -24,6 +24,10 @@
 				  	<div class="form-group">
 				    	<label for="contact">Contacto</label>
 				    	<input type="text" class="form-control" id="contact" name="contact" placeholder="Contacto del cliente ...">
+				  	</div>
+				  	<div class="form-group">
+				    	<label for="contact">E-Mail</label>
+				    	<input type="text" class="form-control" id="email" name="email" placeholder="Email del cliente ...">
 				  	</div>
 					<button type="submit" class="btn btn-default">Crear</button>
 				</g:form>

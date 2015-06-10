@@ -6,5 +6,4 @@ class Refactor {
 	String description
 
     static constraints = {}
-	static belongsTo = [owner: Project]
 }
