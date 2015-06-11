@@ -94,10 +94,12 @@ class ProjectController {
 	
 	private def createRefactors(String refactor, String amount, Project project){
 		List<Refactor> result = []
-		Refactor item = new Refactor()
-		item.price = amount.toDouble()
-		item.description = refactor
-		result << item
+		if(refactor != null && refactor != "" && amount != null && amount != ""){
+			Refactor item = new Refactor()
+			item.price = amount.toDouble()
+			item.description = refactor
+			result << item
+		}
 		result
 	}
 }
