@@ -5,5 +5,6 @@ class Refactor {
 	Double price
 	String description
 
+	static searchable = true
     static constraints = {}
 }

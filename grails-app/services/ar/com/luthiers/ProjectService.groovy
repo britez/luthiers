@@ -66,6 +66,11 @@ class ProjectService {
 		Project.executeQuery("from Project p where p.estimatedDate <= ?",[new Date().clearTime()])
 	}
 	
+	def search(String query){
+		query = "%$query%"
+		Project.executeQuery("from Project p where UPPER(p.description) like UPPER(?) or UPPER(p.owner.name) like UPPER(?) or UPPER(p.owner.lastName) like UPPER(?)",[query, query, query])
+	}
+	
 	private changeOwner(Project stored, Client newClient){
 		if(!stored.owner.equals(newClient)){
 			stored.owner = newClient

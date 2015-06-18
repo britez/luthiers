@@ -49,4 +49,9 @@ class ClientController {
 		}
 		redirect (action: "index")
 	}
+	
+	def search() {
+		String query = params.query
+		render(template: 'listItems', model:[clients:clientService.search(params.query), query:query])
+	}
 }

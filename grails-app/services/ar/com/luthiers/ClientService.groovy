@@ -43,4 +43,8 @@ class ClientService {
 	def delete(Long id){
 		get(id).delete()
 	}
+	def search(String query){
+		query = "%$query%"
+		Client.executeQuery("from Client c where UPPER(c.name) like UPPER(?) or UPPER(c.lastName) like UPPER(?) or UPPER(c.contact) like UPPER(?) or UPPER(c.email) like UPPER(?)",[query, query, query, query])
+	}
 }

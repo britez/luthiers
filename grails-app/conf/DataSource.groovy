@@ -18,22 +18,14 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-			driverClassName = "org.postgresql.Driver"
-			dialect = org.hibernate.dialect.PostgreSQLDialect
-			url = "jdbc:postgresql://ec2-174-129-26-115.compute-1.amazonaws.com:5432/d6hu5rm0h833ro"
-			username = "wjirgzkjhgbpev"
-			password = "vNvzwQulmvZ7o5I3kzcb-fh1lQ"
+            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         }
     }
     test {
         dataSource {
-            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-			driverClassName = "org.postgresql.Driver"
-			dialect = org.hibernate.dialect.PostgreSQLDialect
-			url = "jdbc:postgresql://ec2-174-129-26-115.compute-1.amazonaws.com:5432/d6hu5rm0h833ro"
-			username = "wjirgzkjhgbpev"
-			password = "vNvzwQulmvZ7o5I3kzcb-fh1lQ"
+            dbCreate = "update"
+            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         }
     }
     production {

@@ -16,6 +16,11 @@ class ProjectController {
 		 expired: projectService.countExpired()]
 	}
 	
+	def search() {
+		String query = params.query
+		render(template: 'listItems', model:[projects:projectService.search(params.query), query:query])
+	}
+	
 	def expired(){
 		[projects:projectService.expired()]
 	}
