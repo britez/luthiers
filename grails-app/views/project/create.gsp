@@ -47,7 +47,7 @@
 							</select>
 							<div class="hide" id="client-error"></div>
 					  	</div>
-					  	<div class="form-group hide" id="instrumentGroup" data-url="<g:createLink controller="instrument" action="list"/>">
+					  	<div class="form-group" id="instrumentGroup" data-url="<g:createLink controller="instrument" action="list"/>">
 					    	<label for="instrument">Instrumento</label>
 					    	<select class="form-control" name="instrument" id="instrument" required>
 					    		<option value>Elegir instrumento ...</option>
@@ -165,7 +165,6 @@
 					  	data: { id : id },
 					});
 					request.done(function(data) {
-						$('#instrumentGroup').removeClass('hide')
 				  		$("#instrument").append(data);
 					});
 				});
