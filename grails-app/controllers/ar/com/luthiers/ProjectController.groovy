@@ -9,6 +9,7 @@ class ProjectController {
 	
 	def projectService
 	def clientService
+	def instrumentService
 
     def index() {
 		[projects:projectService.list(), 
@@ -45,7 +46,9 @@ class ProjectController {
 	def save(){
 		Long result
 		try {
-			result = projectService.create(createProject(params), clientService.get(params.client.toLong()))
+			def a = params.instrument.toLong()
+			def b = params.client.toLong()
+			result = projectService.create(createProject(params), clientService.get(b), a)
 			flash.success = "Proyecto creado con éxito"
 		}catch(ResourceNotFoundException ex){
 			flash.error = "El cliente no existe"

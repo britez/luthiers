@@ -50,6 +50,9 @@ class ClientController {
 		redirect (action: "index")
 	}
 	
+	
+	//Ajax endpoints
+	
 	def search() {
 		String query = params.query
 		render(template: 'listItems', model:[clients:clientService.search(params.query), query:query])

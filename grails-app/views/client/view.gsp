@@ -2,12 +2,13 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
+		<asset:javascript src="jquery.validate.min.js"/>
 	</head>
 	<body>
 		<div class="row">
 			<g:if test="${flash.success}">
 				<div class="row alert alert-success" role="alert">
-		      		<strong>Creado!</strong> ${flash.success}.
+		      		<strong>OK!</strong> ${flash.success}.
 		    	</div>
 			</g:if>
 			<g:if test="${flash.error}">
@@ -23,6 +24,10 @@
 						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar
 					</button>
 				</g:link>
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#createInstrumentModal">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					Instrumento
+				</button>
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar
 				</button>
@@ -38,11 +43,16 @@
     		<p><b>E-mail:</b> ${client.email}</p>
 		</div>
 		<div class="row">
-			<p><b>Proyectos:</b></p>
-			<g:render template="/project/list" model="${[projects:client.projects]}"/>
+			<p><b>Instrumentos y Proyectos:</b></p>
+			<div class="col-md-4">
+				<g:render template="/instrument/list" model="${[instruments:client.instruments]}"/>
+			</div>
+			<div class="col-md-8">
+				<g:render template="/project/list" model="${[projects:client.projects]}"/>
+			</div>
 		</div>
 		
-		<!-- Modal -->
+		<!-- Modal delete client-->
 		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -70,6 +80,13 @@
    						</g:link>
 					</div>
 				</div>
+			</div>
+		</div>
+		
+		<!-- Modal new instrument -->
+		<div class="modal fade" id="createInstrumentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<g:render template="/instrument/modalForm" model="${[clientId:client.id]}"/>
 			</div>
 		</div>
 	</body>

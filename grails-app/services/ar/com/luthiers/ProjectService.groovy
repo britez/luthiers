@@ -21,9 +21,10 @@ class ProjectService {
 		result
 	}
 	
-	def create(Project project, Client client){
+	def create(Project project, Client client, Long instrumentId){
 		project.owner = client
 		project.ammount = getAmmount(project.refactors)
+		project.instrument = client.getInstrument(instrumentId)
 		project.save()
 		if(project.hasErrors()){
 			throw new PersistanceException()
@@ -68,7 +69,7 @@ class ProjectService {
 	
 	def search(String query){
 		query = "%$query%"
-		Project.executeQuery("from Project p where UPPER(p.description) like UPPER(?) or UPPER(p.owner.name) like UPPER(?) or UPPER(p.owner.lastName) like UPPER(?)",[query, query, query])
+		Project.executeQuery("from Project p where UPPER(p.description) like UPPER(?) or UPPER(p.owner.name) like UPPER(?) or UPPER(p.owner.lastName) like UPPER(?) or UPPER(p.instrument.model) like UPPER(?) or UPPER(p.instrument.brand) like UPPER(?)",[query, query, query, query, query])
 	}
 	
 	private changeOwner(Project stored, Client newClient){

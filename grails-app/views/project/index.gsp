@@ -7,7 +7,7 @@
 		<div class="row">
 			<g:if test="${flash.success}">
 				<div class="row alert alert-success" role="alert">
-    				<strong>Creado!</strong> ${flash.success}.
+    				<strong>OK!</strong> ${flash.success}.
     			</div>
 			</g:if>
 			<g:if test="${flash.error}">

@@ -12,6 +12,7 @@ class ClientService {
 	
 	def create(Client client){
 		client.projects = []
+		client.instruments = []
 		client.save()
 		if (client.hasErrors()){
 			throw new PersistanceException()

@@ -47,6 +47,13 @@
 							</select>
 							<div class="hide" id="client-error"></div>
 					  	</div>
+					  	<div class="form-group hide" id="instrumentGroup" data-url="<g:createLink controller="instrument" action="list"/>">
+					    	<label for="instrument">Instrumento</label>
+					    	<select class="form-control" name="instrument" id="instrument" required>
+					    		<option value>Elegir instrumento ...</option>
+							</select>
+							<div class="hide" id="instrument-error"></div>
+					  	</div>
 					  	<div class="form-group">
 					    	<label for="description">Descripción</label>
 					    	<input type="text" class="form-control" id="description" name="description" placeholder="Descripción del arreglo ..." required>
@@ -110,6 +117,7 @@
 		</div>
 		<script type="text/javascript">
 			$().ready(initialize());
+			
 			function initialize() {
 				$('.validable').validate({
 					errorClass: 'has-error',
@@ -131,6 +139,9 @@
   	  					client: {
   	  	  					required: "Debe de elegir un cliente"
   	  	  				},
+  						instrument: {
+	  	  					required: "Debe de elegir un instrumento"
+	  	  				},
   	  	  				description: {
   	  	  	  				required: "Debe agregar una descripción"
  	  	  	  			},
@@ -144,6 +155,19 @@
 							required: "Debe agregar un precio para el arreglo"
 	 	 	  	  	  	}
   	  				}
+				});
+				$('#client').change(function (){
+					var id = $('#client').val();
+					var url = $('#instrumentGroup').attr('data-url');
+					var request = $.ajax({
+				  		url: url,
+						method: "GET",
+					  	data: { id : id },
+					});
+					request.done(function(data) {
+						$('#instrumentGroup').removeClass('hide')
+				  		$("#instrument").append(data);
+					});
 				});
 			}
 		</script>

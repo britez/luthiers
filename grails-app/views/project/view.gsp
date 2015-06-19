@@ -35,6 +35,9 @@
     		<p><b>Cliente:</b> ${project.owner.name} ${project.owner.lastName}</p>
    		</div>
    		<div class="row">
+    		<p><b>Instrumento:</b> ${project.instrument.type} <b>Marca:</b> ${project.instrument.brand} <b>Modelo:</b> ${project.instrument.model}</p> 
+   		</div>
+   		<div class="row">
     		<p><b>Fecha estimada:</b> <g:formatDate format="dd/MM/yyyy" date="${project.estimatedDate}"/></p>
    		</div>
    		<div class="row">
