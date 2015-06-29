@@ -60,11 +60,11 @@ class ProjectService {
 	}
 	
 	def countExpired(){
-		Project.executeQuery("select count(p.id) from Project p where p.estimatedDate <= ?",[(new Date()-1).clearTime()])[0]
+		Project.executeQuery("select count(p.id) from Project p where p.estimatedDate <= ? and p.status != ?",[(new Date()-1).clearTime(),ProjectStatus.FINISHED])[0]
 	}
 	
 	def expired(){
-		Project.executeQuery("from Project p where p.estimatedDate <= ?",[new Date().clearTime()])
+		Project.executeQuery("from Project p where p.estimatedDate <= ? and p.status != ?",[new Date().clearTime(),ProjectStatus.FINISHED])
 	}
 	
 	def search(String query){
@@ -72,7 +72,24 @@ class ProjectService {
 		Project.executeQuery("from Project p where UPPER(p.description) like UPPER(?) or UPPER(p.owner.name) like UPPER(?) or UPPER(p.owner.lastName) like UPPER(?) or UPPER(p.instrument.model) like UPPER(?) or UPPER(p.instrument.brand) like UPPER(?)",[query, query, query, query, query])
 	}
 	
-	private changeOwner(Project stored, Client newClient){
+	def start(Long id){
+		changeStatus(get(id),ProjectStatus.IN_PROGRESS)
+	}
+	
+	def ready(Long id){
+		changeStatus(get(id),ProjectStatus.READY)
+	}
+	
+	def finish(Long id){
+		changeStatus(get(id),ProjectStatus.FINISHED)
+	}
+	
+	private void changeStatus(Project project, ProjectStatus newStatus){
+		project.status = newStatus
+		project.save()
+	}
+	
+	private void changeOwner(Project stored, Client newClient){
 		if(!stored.owner.equals(newClient)){
 			stored.owner = newClient
 		}

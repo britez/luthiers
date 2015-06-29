@@ -31,7 +31,10 @@ class ProjectController {
 	}
 	
 	def view(Long id){
-		[project:projectService.get(id)]
+		[project:projectService.get(id), 
+		 ready:ProjectStatus.READY, 
+		 inProgress: ProjectStatus.IN_PROGRESS, 
+		 finished: ProjectStatus.FINISHED]
 	}
 	
 	def create(){
@@ -84,8 +87,24 @@ class ProjectController {
 		redirect (action: "index")
 	}
 	
+	def start(Long id){
+		projectService.start(id)
+		redirect (action: "view", id: id)
+	}
+	
+	def ready(Long id){
+		projectService.ready(id)
+		redirect (action: "view", id: id)
+	}
+	
+	def finish(Long id){
+		projectService.finish(id)
+		redirect (action: "view", id: id)
+	}
+	
 	private def createProject(def params){
 		Project project = new Project()
+		project.status = ProjectStatus.READY
 		project.description = params.description
 		project.estimatedDate = new SimpleDateFormat("dd/MM/yyyy").parse(params.estimatedDate)
 		project.refactors = createRefactors(params.refactors, params.amounts, project)

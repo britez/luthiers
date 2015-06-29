@@ -6,6 +6,7 @@ class Project {
 	String description
 	Double ammount
 	Instrument instrument
+	ProjectStatus status
 	
 	static searchable = true
     static constraints = {}

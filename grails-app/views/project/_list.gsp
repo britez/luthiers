@@ -7,12 +7,13 @@
 			<th>Descripción</th>
 			<th>Fecha de entrega</th>
 			<th>Precio ($)</th>
+			<th>Estado</th>
 		</tr>
 	</thead>
 	<tbody>
 		<g:if test="${projects.isEmpty()}">
 			<tr class="success">
-				<td colspan="6" align="center"> No existen proyectos. Crea uno <g:link controller="project" action="create">aqui!</g:link></td>
+				<td colspan="7" align="center"> No existen proyectos. Crea uno <g:link controller="project" action="create">aqui!</g:link></td>
 			</tr>
 		</g:if>
 		<g:each in="${projects}">
@@ -23,6 +24,7 @@
 				<td>${it.description}</td>
 				<td><g:formatDate format="dd/MM/yyyy" date="${it.estimatedDate}"/></td>
 				<td>$ ${it.ammount}</td>
+				<td>${it.status.toString()}</td>
 			</tr>
 		</g:each>
 		<script type="text/javascript">

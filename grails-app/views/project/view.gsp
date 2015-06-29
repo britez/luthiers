@@ -7,7 +7,7 @@
 		<div class="row">
 			<g:if test="${flash.success}">
 				<div class="row alert alert-success" role="alert">
-    				<strong>Eliminado!</strong> ${flash.success}.
+    				<strong>OK!</strong> ${flash.success}.
     			</div>
 			</g:if>
 			<g:if test="${flash.error}">
@@ -26,6 +26,32 @@
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar
 				</button>
+				<g:if test="${finished.equals(project.status)}">
+					<g:link action="start" id="${project.id}">
+						<button type="button" class="btn btn-success">
+							<span class="glyphicon glyphicon-play" aria-hidden="true"></span> Reanudar
+						</button>
+					</g:link>
+				</g:if>
+				<g:if test="${inProgress.equals(project.status)}">
+					<g:link action="ready" id="${project.id}">
+						<button type="button" class="btn btn-success">
+							<span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pausar
+						</button>
+					</g:link>
+					<g:link action="finish" id="${project.id}">
+						<button type="button" class="btn btn-success">
+							<span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Terminar
+						</button>
+					</g:link>
+				</g:if>
+				<g:if test="${ready.equals(project.status)}">
+				<g:link action="start" id="${project.id}">
+					<button type="button" class="btn btn-success">
+						<span class="glyphicon glyphicon-play" aria-hidden="true"></span> Empezar
+					</button>
+				</g:link>
+				</g:if>
 			</div>
 			<div class="page-header">
 	        	<h1>Proyecto</h1>
@@ -39,6 +65,9 @@
    		</div>
    		<div class="row">
     		<p><b>Fecha estimada:</b> <g:formatDate format="dd/MM/yyyy" date="${project.estimatedDate}"/></p>
+   		</div>
+   		<div class="row">
+    		<p><b>Estado:</b> ${project.status.toString()}</p>
    		</div>
    		<div class="row">
     		<p><b>Descripción:</b> ${project.description}</p>

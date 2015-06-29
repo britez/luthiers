@@ -1,6 +1,6 @@
 <g:if test="${projects.isEmpty()}">
 	<tr class="success">
-		<td colspan="6" align="center"> No existen proyectos. Para la búsqueda ${query}</td>
+		<td colspan="7" align="center"> No existen proyectos. Para la búsqueda ${query}</td>
 	</tr>
 </g:if>
 <g:each in="${projects}">
@@ -11,6 +11,7 @@
 		<td>${it.description}</td>
 		<td><g:formatDate format="dd/MM/yyyy" date="${it.estimatedDate}"/></td>
 		<td>$ ${it.ammount}</td>
+		<td>$ ${it.status.toString()}</td>
 	</tr>
 </g:each>
 <script type="text/javascript">
