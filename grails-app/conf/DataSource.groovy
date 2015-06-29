@@ -33,9 +33,9 @@ environments {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
 			driverClassName = "org.postgresql.Driver"
 			dialect = org.hibernate.dialect.PostgreSQLDialect
-			url = "jdbc:postgresql://ec2-174-129-26-115.compute-1.amazonaws.com:5432/d6hu5rm0h833ro"
-			username = "wjirgzkjhgbpev"
-			password = "vNvzwQulmvZ7o5I3kzcb-fh1lQ"
+			url = "jdbc:postgresql://ec2-174-129-26-115.compute-1.amazonaws.com:5432/db29lvgamqbpkk"
+			username = "vlpimkvfuoqtty"
+			password = "pkzeAyrZwAMA38Qe35i_FTc_dW"
         }
     }
 }
